@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="idcard" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNum" optional="YES" attributeType="String"/>
+        <relationship name="haveOrders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="belongsToCustomer" inverseEntity="Order"/>
+    </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="totalPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="belongsToCustomer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="haveOrders" inverseEntity="Customer"/>
+        <relationship name="haveVehicles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transportation" inverseName="inOrder" inverseEntity="Transportation"/>
+    </entity>
+    <entity name="Transportation" representedClassName="Transportation" syncable="YES" codeGenerationType="class">
+        <attribute name="car_fuelType" optional="YES" attributeType="String"/>
+        <attribute name="car_luggageSize" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="manufacture" optional="YES" attributeType="String"/>
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="motor_fuelCapacity" optional="YES" attributeType="String"/>
+        <attribute name="motor_luggageArea" optional="YES" attributeType="String"/>
+        <attribute name="passengerAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="truck_cargoArea" optional="YES" attributeType="String"/>
+        <attribute name="truck_tireAmount" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="inOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="haveVehicles" inverseEntity="Order"/>
+    </entity>
+</model>
